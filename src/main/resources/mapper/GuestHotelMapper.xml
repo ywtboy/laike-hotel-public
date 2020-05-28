@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.GuestHotelMapper">
+    <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.GuestHotel">
+        <id column="guest_hotel_id" jdbcType="BIGINT" property="guestHotelId"/>
+        <result column="guest_name" jdbcType="VARCHAR" property="guestName"/>
+        <result column="guest_tel" jdbcType="VARCHAR" property="guestTel"/>
+        <result column="certificate_no" jdbcType="VARCHAR" property="certificateNo"/>
+        <result column="is_vip" jdbcType="BIT" property="vip"/>
+        <result column="hotel_no" jdbcType="VARCHAR" property="hotelNo"/>
+        <result column="is_deleted" jdbcType="BIT" property="deleted"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    guest_hotel_id, guest_name, guest_tel, certificate_no, is_vip, hotel_no, is_deleted, 
+    gmt_create, gmt_modified
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from guest_hotel
+        where guest_hotel_id = #{guestHotelId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from guest_hotel
+    where guest_hotel_id = #{guestHotelId,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.ywt.laike.hotel.model.GuestHotel">
+    insert into guest_hotel (guest_hotel_id, guest_name, guest_tel, 
+      certificate_no, is_vip, hotel_no, 
+      is_deleted, gmt_create, gmt_modified
+      )
+    values (#{guestHotelId,jdbcType=BIGINT}, #{guestName,jdbcType=VARCHAR}, #{guestTel,jdbcType=VARCHAR}, 
+      #{certificateNo,jdbcType=VARCHAR}, #{vip,jdbcType=BIT}, #{hotelNo,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=BIT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.GuestHotel">
+        insert into guest_hotel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guestHotelId != null">
+                guest_hotel_id,
+            </if>
+            <if test="guestName != null">
+                guest_name,
+            </if>
+            <if test="guestTel != null">
+                guest_tel,
+            </if>
+            <if test="certificateNo != null">
+                certificate_no,
+            </if>
+            <if test="vip != null">
+                is_vip,
+            </if>
+            <if test="hotelNo != null">
+                hotel_no,
+            </if>
+            <if test="deleted != null">
+                is_deleted,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guestHotelId != null">
+                #{guestHotelId,jdbcType=BIGINT},
+            </if>
+            <if test="guestName != null">
+                #{guestName,jdbcType=VARCHAR},
+            </if>
+            <if test="guestTel != null">
+                #{guestTel,jdbcType=VARCHAR},
+            </if>
+            <if test="certificateNo != null">
+                #{certificateNo,jdbcType=VARCHAR},
+            </if>
+            <if test="vip != null">
+                #{vip,jdbcType=BIT},
+            </if>
+            <if test="hotelNo != null">
+                #{hotelNo,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.GuestHotel">
+        update guest_hotel
+        <set>
+            <if test="guestName != null">
+                guest_name = #{guestName,jdbcType=VARCHAR},
+            </if>
+            <if test="guestTel != null">
+                guest_tel = #{guestTel,jdbcType=VARCHAR},
+            </if>
+            <if test="certificateNo != null">
+                certificate_no = #{certificateNo,jdbcType=VARCHAR},
+            </if>
+            <if test="vip != null">
+                is_vip = #{vip,jdbcType=BIT},
+            </if>
+            <if test="hotelNo != null">
+                hotel_no = #{hotelNo,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null">
+                is_deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where guest_hotel_id = #{guestHotelId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.GuestHotel">
+    update guest_hotel
+    set guest_name = #{guestName,jdbcType=VARCHAR},
+      guest_tel = #{guestTel,jdbcType=VARCHAR},
+      certificate_no = #{certificateNo,jdbcType=VARCHAR},
+      is_vip = #{vip,jdbcType=BIT},
+      hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where guest_hotel_id = #{guestHotelId,jdbcType=BIGINT}
+  </update>
+
+    <select id="listGuestHotels" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from guest_hotel
+        <where>
+            <include refid="querySql"/>
+        </where>
+        <if test="sortBy != null">
+            order by
+            ${sortBy}
+            <if test="orderBy != null">
+                ${orderBy}
+            </if>
+        </if>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="countGuestsOfHotel" resultType="Integer">
+        select
+        count(*)
+        from guest_hotel
+        <where>
+            <include refid="querySql"/>
+        </where>
+    </select>
+
+    <sql id="querySql">
+        <if test="hotelNo != null">
+            and hotel_no = #{hotelNo,jdbcType=VARCHAR}
+        </if>
+        <if test="guestName != null">
+            and guest_name like CONCAT('%',#{guestName},'%')
+        </if>
+        <if test="guestTel != null">
+            and guest_tel like CONCAT('%',#{guestTel},'%')
+        </if>
+        <if test="certificateNo != null">
+            and certificate_no like CONCAT('%',#{certificateNo},'%')
+        </if>
+    </sql>
+</mapper>

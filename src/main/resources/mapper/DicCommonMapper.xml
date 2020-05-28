@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.DicCommonMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.DicCommon">
+    <id column="dic_common_id" jdbcType="BIGINT" property="dicCommonId" />
+    <result column="dic_common_code" jdbcType="VARCHAR" property="dicCommonCode" />
+    <result column="dic_common_name" jdbcType="VARCHAR" property="dicCommonName" />
+    <result column="dic_type_id" jdbcType="BIGINT" property="dicTypeId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="dic_level" jdbcType="INTEGER" property="dicLevel" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dic_common_id, dic_common_code, dic_common_name, dic_type_id, parent_id, dic_level, sort_no,
+    is_deleted, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dic_common
+    where dic_common_id = #{dicCommonId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dic_common
+    where dic_common_id = #{dicCommonId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.DicCommon">
+    insert into dic_common (dic_common_id, dic_common_code, dic_common_name, 
+      dic_type_id, parent_id, dic_level,
+      sort_no, is_deleted, gmt_create, 
+      gmt_modified)
+    values (#{dicCommonId,jdbcType=BIGINT}, #{dicCommonCode,jdbcType=VARCHAR}, #{dicCommonName,jdbcType=VARCHAR}, 
+      #{dicTypeId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{dicLevel,jdbcType=INTEGER},
+      #{sortNo,jdbcType=INTEGER}, #{deleted,jdbcType=BIT}, #{gmtCreate,jdbcType=TIMESTAMP},
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.DicCommon">
+    insert into dic_common
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dicCommonId != null">
+        dic_common_id,
+      </if>
+      <if test="dicCommonCode != null">
+        dic_common_code,
+      </if>
+      <if test="dicCommonName != null">
+        dic_common_name,
+      </if>
+      <if test="dicTypeId != null">
+        dic_type_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="dicLevel != null">
+        dic_level,
+      </if>
+      <if test="sortNo != null">
+        sort_no,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dicCommonId != null">
+        #{dicCommonId,jdbcType=BIGINT},
+      </if>
+      <if test="dicCommonCode != null">
+        #{dicCommonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCommonName != null">
+        #{dicCommonName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeId != null">
+        #{dicTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="dicLevel != null">
+        #{dicLevel,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.DicCommon">
+    update dic_common
+    <set>
+      <if test="dicCommonCode != null">
+        dic_common_code = #{dicCommonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dicCommonName != null">
+        dic_common_name = #{dicCommonName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeId != null">
+        dic_type_id = #{dicTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="dicLevel != null">
+        dic_level = #{dicLevel,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where dic_common_id = #{dicCommonId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.DicCommon">
+    update dic_common
+    set dic_common_code = #{dicCommonCode,jdbcType=VARCHAR},
+      dic_common_name = #{dicCommonName,jdbcType=VARCHAR},
+      dic_type_id = #{dicTypeId,jdbcType=BIGINT},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      dic_level = #{dicLevel,jdbcType=INTEGER},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where dic_common_id = #{dicCommonId,jdbcType=BIGINT}
+  </update>
+
+  <!--以上自动生成-->
+
+  <select id="listDicCommons" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dic_common
+    <where>
+      <if test="dicTypeId != null">
+        AND dic_type_id = #{dicTypeId}
+      </if>
+      <if test="parentId != null">
+        AND parent_id = #{parentId}
+      </if>
+      <if test="dicLevel != null">
+        AND dic_level = #{dicLevel}
+      </if>
+      <if test="deleted != null">
+        AND is_deleted = #{deleted}
+      </if>
+    </where>
+  </select>
+
+  <select id="countDicCommon" resultType="Integer">
+    select
+      count(*)
+    from dic_common
+    <where>
+      <if test="dicTypeId != null">
+        AND dic_type_id = #{dicTypeId}
+      </if>
+      <if test="parentId != null">
+        AND parent_id = #{parentId}
+      </if>
+      <if test="dicLevel != null">
+        AND dic_level = #{dicLevel}
+      </if>
+      <if test="deleted != null">
+        AND is_deleted = #{deleted}
+      </if>
+    </where>
+  </select>
+</mapper>

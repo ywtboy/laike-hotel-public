@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.RoomTypeMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.RoomType">
+    <id column="room_type_id" jdbcType="BIGINT" property="roomTypeId" />
+    <result column="room_type_name" jdbcType="VARCHAR" property="roomTypeName" />
+    <result column="room_type_price" jdbcType="DECIMAL" property="roomTypePrice" />
+    <result column="hotel_no" jdbcType="VARCHAR" property="hotelNo" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    room_type_id, room_type_name, room_type_price, hotel_no, sort_no, is_deleted, gmt_create, 
+    gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from room_type
+    where room_type_id = #{roomTypeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from room_type
+    where room_type_id = #{roomTypeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.RoomType" useGeneratedKeys="true"
+          keyProperty="roomTypeId" keyColumn="room_type_id">
+    insert into room_type (room_type_id, room_type_name, room_type_price, 
+      hotel_no, sort_no, is_deleted, 
+      gmt_create, gmt_modified)
+    values (#{roomTypeId,jdbcType=BIGINT}, #{roomTypeName,jdbcType=VARCHAR}, #{roomTypePrice,jdbcType=DECIMAL}, 
+      #{hotelNo,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{deleted,jdbcType=BIT},
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.RoomType" useGeneratedKeys="true"
+          keyProperty="roomTypeId" keyColumn="room_type_id">
+    insert into room_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roomTypeId != null">
+        room_type_id,
+      </if>
+      <if test="roomTypeName != null">
+        room_type_name,
+      </if>
+      <if test="roomTypePrice != null">
+        room_type_price,
+      </if>
+      <if test="hotelNo != null">
+        hotel_no,
+      </if>
+      <if test="sortNo != null">
+        sort_no,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roomTypeId != null">
+        #{roomTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="roomTypeName != null">
+        #{roomTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomTypePrice != null">
+        #{roomTypePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="hotelNo != null">
+        #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.RoomType">
+    update room_type
+    <set>
+      <if test="roomTypeName != null">
+        room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomTypePrice != null">
+        room_type_price = #{roomTypePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="hotelNo != null">
+        hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where room_type_id = #{roomTypeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.RoomType">
+    update room_type
+    set room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+      room_type_price = #{roomTypePrice,jdbcType=DECIMAL},
+      hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      sort_no = #{sortNo,jdbcType=INTEGER},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where room_type_id = #{roomTypeId,jdbcType=BIGINT}
+  </update>
+
+  <!--以上自动生成-->
+
+  <sql id="Base_Column_List2">
+    rt.room_type_id, rt.room_type_name, rt.room_type_price, rt.hotel_no, rt.sort_no, rt.is_deleted, rt.gmt_create,
+    rt.gmt_modified
+  </sql>
+
+  <sql id="room_column">
+    room.room_id, room.room_name, room.room_no, room.room_type_id, room.room_state, room.floor_id,
+    room.hotel_no, room.order_no,
+    room.room_tag, room.is_locked, room.locked_reason, room.is_deleted, room.gmt_create, room.gmt_modified
+  </sql>
+
+  <select id="listRoomTypesByHotelNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from room_type
+    where hotel_no = #{hotelNo,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

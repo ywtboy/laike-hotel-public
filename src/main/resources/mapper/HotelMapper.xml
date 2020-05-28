@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.HotelMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.Hotel">
+    <id column="hotel_id" jdbcType="BIGINT" property="hotelId" />
+    <result column="hotel_no" jdbcType="VARCHAR" property="hotelNo" />
+    <result column="hotel_name" jdbcType="VARCHAR" property="hotelName" />
+    <result column="country_code" jdbcType="VARCHAR" property="countryCode" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="district_code" jdbcType="VARCHAR" property="districtCode" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="hotline" jdbcType="VARCHAR" property="hotline" />
+    <result column="parent_hotel_id" jdbcType="BIGINT" property="parentHotelId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="activation_end_time" jdbcType="TIMESTAMP" property="activationEndTime" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    hotel_id, hotel_no, hotel_name, country_code, province_code, city_code, district_code, 
+    address, hotline, parent_hotel_id, user_id, activation_end_time, is_deleted, gmt_create, gmt_modified
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hotel
+    where hotel_id = #{hotelId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hotel
+    where hotel_id = #{hotelId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.Hotel">
+    insert into hotel (hotel_id, hotel_no, hotel_name, 
+      country_code, province_code, city_code, 
+      district_code, address, hotline, 
+      parent_hotel_id, user_id, activation_end_time, is_deleted,
+      gmt_create, gmt_modified)
+    values (#{hotelId,jdbcType=BIGINT}, #{hotelNo,jdbcType=VARCHAR}, #{hotelName,jdbcType=VARCHAR}, 
+      #{countryCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{districtCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{hotline,jdbcType=VARCHAR}, 
+      #{parentHotelId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{activationEndTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT},
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.Hotel">
+    insert into hotel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hotelId != null">
+        hotel_id,
+      </if>
+      <if test="hotelNo != null">
+        hotel_no,
+      </if>
+      <if test="hotelName != null">
+        hotel_name,
+      </if>
+      <if test="countryCode != null">
+        country_code,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="districtCode != null">
+        district_code,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="hotline != null">
+        hotline,
+      </if>
+      <if test="parentHotelId != null">
+        parent_hotel_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="activationEndTime != null">
+        activation_end_time,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hotelId != null">
+        #{hotelId,jdbcType=BIGINT},
+      </if>
+      <if test="hotelNo != null">
+        #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelName != null">
+        #{hotelName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null">
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null">
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="hotline != null">
+        #{hotline,jdbcType=VARCHAR},
+      </if>
+      <if test="parentHotelId != null">
+        #{parentHotelId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="activationEndTime != null">
+        #{activationEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.Hotel">
+    update hotel
+    <set>
+      <if test="hotelNo != null">
+        hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelName != null">
+        hotel_name = #{hotelName,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null">
+        country_code = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtCode != null">
+        district_code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="hotline != null">
+        hotline = #{hotline,jdbcType=VARCHAR},
+      </if>
+      <if test="parentHotelId != null">
+        parent_hotel_id = #{parentHotelId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="activationEndTime != null">
+        activation_end_time = #{activationEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where hotel_id = #{hotelId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.Hotel">
+    update hotel
+    set hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      hotel_name = #{hotelName,jdbcType=VARCHAR},
+      country_code = #{countryCode,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      hotline = #{hotline,jdbcType=VARCHAR},
+      parent_hotel_id = #{parentHotelId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      activation_end_time = #{activationEndTime,jdbcType=TIMESTAMP},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where hotel_id = #{hotelId,jdbcType=BIGINT}
+  </update>
+  <!--以上为mybatis自动生成-->
+
+  <select id="getByHotelNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hotel
+    where hotel_no = #{hotelNo}
+  </select>
+
+  <select id="listHotels" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hotel
+--     where hotel_no = #{hotelNo}
+  </select>
+
+  <update id="deleteByHotelNo" parameterType="com.ywt.laike.hotel.model.Hotel">
+    update hotel
+    set
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where hotel_no = #{hotelNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="countHotelByProvince" parameterType="java.lang.String"  resultType="java.lang.Integer">
+    select count(*)
+    from hotel
+    where province_code = #{provinceCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

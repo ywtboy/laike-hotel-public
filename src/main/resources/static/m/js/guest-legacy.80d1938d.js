@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["guest"],{"0c8c":function(n,e,t){"use strict";t.r(e);var u=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",[n._v("\n客人\n  ")])},c=[],a={name:"",data:function(){return{}}},r=a,l=t("2877"),s=Object(l["a"])(r,u,c,!1,null,null,null);e["default"]=s.exports}}]);
+//# sourceMappingURL=guest-legacy.80d1938d.js.map

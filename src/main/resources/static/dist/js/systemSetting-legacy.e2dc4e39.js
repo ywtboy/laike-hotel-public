@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["systemSetting"],{"2d8d":function(n,t,e){"use strict";e.r(t);var s=function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("div",[n._v("\n系统设置\n  ")])},u=[],a={name:"SystemSetting",data:function(){return{}}},i=a,r=e("2877"),c=Object(r["a"])(i,s,u,!1,null,null,null);t["default"]=c.exports}}]);
+//# sourceMappingURL=systemSetting-legacy.e2dc4e39.js.map

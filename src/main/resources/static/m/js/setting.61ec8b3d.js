@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["setting"],{"4ef5":function(n,e,t){"use strict";t.r(e);var a=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",[n._v("\n设置\n  ")])},r=[],u={name:"Setting",data(){return{}}},i=u,l=t("2877"),s=Object(l["a"])(i,a,r,!1,null,null,null);e["default"]=s.exports}}]);
+//# sourceMappingURL=setting.61ec8b3d.js.map

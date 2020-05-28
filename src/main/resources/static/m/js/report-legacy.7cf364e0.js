@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["report"],{"762c":function(t,e,r){"use strict";r.r(e);var n=function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("div",[r("router-view")],1)},o=[],u={name:"Report",data:function(){return{}},mounted:function(){"/report"===this.$route.path&&this.$router.push("report/overview")}},i=u,p=r("2877"),a=Object(p["a"])(i,n,o,!1,null,null,null);e["default"]=a.exports}}]);
+//# sourceMappingURL=report-legacy.7cf364e0.js.map

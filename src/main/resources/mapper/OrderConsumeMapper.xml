@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.OrderConsumeMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.OrderConsume">
+    <id column="consume_id" jdbcType="BIGINT" property="consumeId" />
+    <result column="consume_type_code" jdbcType="VARCHAR" property="consumeTypeCode" />
+    <result column="consume_item_code" jdbcType="VARCHAR" property="consumeItemCode" />
+    <result column="consume_item_detail" jdbcType="VARCHAR" property="consumeItemDetail" />
+    <result column="consume_money" jdbcType="DECIMAL" property="consumeMoney" />
+    <result column="business_day" jdbcType="DATE" property="businessDay" />
+    <result column="room_no" jdbcType="VARCHAR" property="roomNo" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="hotel_no" jdbcType="VARCHAR" property="hotelNo" />
+    <result column="consume_comment" jdbcType="VARCHAR" property="consumeComment" />
+    <result column="operator_id" jdbcType="BIGINT" property="operatorId" />
+    <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
+    <result column="offset_money" jdbcType="DECIMAL" property="offsetMoney" />
+    <result column="offset_id" jdbcType="BIGINT" property="offsetId" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    consume_id, consume_type_code, consume_item_code, consume_item_detail, consume_money, 
+    business_day, room_no, room_name, order_no, hotel_no, consume_comment, operator_id, 
+    operator_name, offset_money, offset_id, is_deleted, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_consume
+    where consume_id = #{consumeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order_consume
+    where consume_id = #{consumeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.OrderConsume">
+    insert into order_consume (consume_id, consume_type_code, consume_item_code, 
+      consume_item_detail, consume_money, business_day, 
+      room_no, room_name, order_no, 
+      hotel_no, consume_comment, operator_id, 
+      operator_name, offset_money, offset_id, is_deleted, gmt_create,
+      gmt_modified)
+    values (#{consumeId,jdbcType=BIGINT}, #{consumeTypeCode,jdbcType=VARCHAR}, #{consumeItemCode,jdbcType=VARCHAR}, 
+      #{consumeItemDetail,jdbcType=VARCHAR}, #{consumeMoney,jdbcType=DECIMAL}, #{businessDay,jdbcType=DATE}, 
+      #{roomNo,jdbcType=VARCHAR}, #{roomName,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{hotelNo,jdbcType=VARCHAR}, #{consumeComment,jdbcType=VARCHAR}, #{operatorId,jdbcType=BIGINT}, 
+      #{operatorName,jdbcType=VARCHAR}, #{offsetMoney,jdbcType=DECIMAL}, #{offsetId,jdbcType=BIGINT},
+      #{deleted,jdbcType=BIT}, #{gmtCreate,jdbcType=TIMESTAMP},
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.OrderConsume">
+    insert into order_consume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="consumeId != null">
+        consume_id,
+      </if>
+      <if test="consumeTypeCode != null">
+        consume_type_code,
+      </if>
+      <if test="consumeItemCode != null">
+        consume_item_code,
+      </if>
+      <if test="consumeItemDetail != null">
+        consume_item_detail,
+      </if>
+      <if test="consumeMoney != null">
+        consume_money,
+      </if>
+      <if test="businessDay != null">
+        business_day,
+      </if>
+      <if test="roomNo != null">
+        room_no,
+      </if>
+      <if test="roomName != null">
+        room_name,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="hotelNo != null">
+        hotel_no,
+      </if>
+      <if test="consumeComment != null">
+        consume_comment,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="operatorName != null">
+        operator_name,
+      </if>
+      <if test="offsetMoney != null">
+        offset_money,
+      </if>
+      <if test="offsetId != null">
+        offset_id,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="consumeId != null">
+        #{consumeId,jdbcType=BIGINT},
+      </if>
+      <if test="consumeTypeCode != null">
+        #{consumeTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeItemCode != null">
+        #{consumeItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeItemDetail != null">
+        #{consumeItemDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeMoney != null">
+        #{consumeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="businessDay != null">
+        #{businessDay,jdbcType=DATE},
+      </if>
+      <if test="roomNo != null">
+        #{roomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roomName != null">
+        #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelNo != null">
+        #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeComment != null">
+        #{consumeComment,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorName != null">
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="offsetMoney != null">
+        #{offsetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="offsetId != null">
+        #{offsetId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.OrderConsume">
+    update order_consume
+    <set>
+      <if test="consumeTypeCode != null">
+        consume_type_code = #{consumeTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeItemCode != null">
+        consume_item_code = #{consumeItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeItemDetail != null">
+        consume_item_detail = #{consumeItemDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeMoney != null">
+        consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="businessDay != null">
+        business_day = #{businessDay,jdbcType=DATE},
+      </if>
+      <if test="roomNo != null">
+        room_no = #{roomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roomName != null">
+        room_name = #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelNo != null">
+        hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeComment != null">
+        consume_comment = #{consumeComment,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorName != null">
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="offsetMoney != null">
+        offset_money = #{offsetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="offsetId != null">
+        offset_id = #{offsetId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where consume_id = #{consumeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.OrderConsume">
+    update order_consume
+    set consume_type_code = #{consumeTypeCode,jdbcType=VARCHAR},
+      consume_item_code = #{consumeItemCode,jdbcType=VARCHAR},
+      consume_item_detail = #{consumeItemDetail,jdbcType=VARCHAR},
+      consume_money = #{consumeMoney,jdbcType=DECIMAL},
+      business_day = #{businessDay,jdbcType=DATE},
+      room_no = #{roomNo,jdbcType=VARCHAR},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      consume_comment = #{consumeComment,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      offset_money = #{offsetMoney,jdbcType=DECIMAL},
+      offset_id = #{offsetId,jdbcType=DECIMAL},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where consume_id = #{consumeId,jdbcType=BIGINT}
+  </update>
+
+  <!--以上自动生成-->
+
+  <select id="listOrderConsumesByOrderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_consume
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insertBatch" parameterType="list">
+    insert into order_consume (consume_id, consume_type_code, consume_item_code,
+      consume_item_detail, consume_money, business_day,
+      room_no, room_name, order_no,
+      hotel_no, consume_comment, operator_id,
+      operator_name, offset_money, offset_id, is_deleted, gmt_create,
+      gmt_modified)
+    values
+      <foreach collection="list" item="v" separator=",">
+        (#{v.consumeId,jdbcType=BIGINT}, #{v.consumeTypeCode,jdbcType=VARCHAR}, #{v.consumeItemCode,jdbcType=VARCHAR},
+        #{v.consumeItemDetail,jdbcType=VARCHAR}, #{v.consumeMoney,jdbcType=DECIMAL}, #{v.businessDay,jdbcType=DATE},
+        #{v.roomNo,jdbcType=VARCHAR}, #{v.roomName,jdbcType=VARCHAR}, #{v.orderNo,jdbcType=VARCHAR},
+        #{v.hotelNo,jdbcType=VARCHAR}, #{v.consumeComment,jdbcType=VARCHAR}, #{v.operatorId,jdbcType=BIGINT},
+        #{v.operatorName,jdbcType=VARCHAR}, #{v.offsetMoney,jdbcType=DECIMAL}, #{v.offsetId,jdbcType=BIGINT},
+        #{v.deleted,jdbcType=BIT}, #{v.gmtCreate,jdbcType=TIMESTAMP},
+        #{v.gmtModified,jdbcType=TIMESTAMP})
+      </foreach>
+
+  </insert>
+</mapper>

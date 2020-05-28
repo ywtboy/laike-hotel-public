@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.FloorMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.Floor">
+    <id column="floor_id" jdbcType="BIGINT" property="floorId" />
+    <result column="floor_name" jdbcType="VARCHAR" property="floorName" />
+    <result column="hotel_no" jdbcType="BIGINT" property="hotelNo" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    floor_id, floor_name, hotel_no, is_deleted, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from floor
+    where floor_id = #{floorId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from floor
+    where floor_id = #{floorId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.Floor">
+    insert into floor (floor_id, floor_name, hotel_no, 
+      is_deleted, gmt_create, gmt_modified
+      )
+    values (#{floorId,jdbcType=BIGINT}, #{floorName,jdbcType=VARCHAR}, #{hotelNo,jdbcType=BIGINT}, 
+      #{deleted,jdbcType=BIT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.Floor">
+    insert into floor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="floorId != null">
+        floor_id,
+      </if>
+      <if test="floorName != null">
+        floor_name,
+      </if>
+      <if test="hotelNo != null">
+        hotel_no,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="floorId != null">
+        #{floorId,jdbcType=BIGINT},
+      </if>
+      <if test="floorName != null">
+        #{floorName,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelNo != null">
+        #{hotelNo,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.Floor">
+    update floor
+    <set>
+      <if test="floorName != null">
+        floor_name = #{floorName,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelNo != null">
+        hotel_no = #{hotelNo,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where floor_id = #{floorId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.Floor">
+    update floor
+    set floor_name = #{floorName,jdbcType=VARCHAR},
+      hotel_no = #{hotelNo,jdbcType=BIGINT},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where floor_id = #{floorId,jdbcType=BIGINT}
+  </update>
+</mapper>

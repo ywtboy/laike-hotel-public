@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.RoomMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.Room">
+    <id column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+    <result column="room_no" jdbcType="VARCHAR" property="roomNo" />
+    <result column="room_type_id" jdbcType="BIGINT" property="roomTypeId" />
+    <result column="room_state" jdbcType="VARCHAR" property="roomState" />
+    <result column="floor_id" jdbcType="BIGINT" property="floorId" />
+    <result column="hotel_no" jdbcType="VARCHAR" property="hotelNo" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="room_tag" jdbcType="VARCHAR" property="roomTag" />
+    <result column="is_locked" jdbcType="BIT" property="locked" />
+    <result column="locked_reason" jdbcType="VARCHAR" property="lockedReason" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    room_id, room_name, room_no, room_type_id, room_state, floor_id, hotel_no, order_no, 
+    room_tag, is_locked, locked_reason, is_deleted, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from room
+    where room_id = #{roomId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from room
+    where room_id = #{roomId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.Room">
+    insert into room (room_id, room_name, room_no, 
+      room_type_id, room_state, floor_id, 
+      hotel_no, order_no, room_tag, 
+      is_locked, locked_reason, is_deleted, 
+      gmt_create, gmt_modified)
+    values (#{roomId,jdbcType=BIGINT}, #{roomName,jdbcType=VARCHAR}, #{roomNo,jdbcType=VARCHAR}, 
+      #{roomTypeId,jdbcType=BIGINT}, #{roomState,jdbcType=VARCHAR}, #{floorId,jdbcType=BIGINT}, 
+      #{hotelNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{roomTag,jdbcType=VARCHAR}, 
+      #{locked,jdbcType=BIT}, #{lockedReason,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT},
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.Room">
+    insert into room
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="roomName != null">
+        room_name,
+      </if>
+      <if test="roomNo != null">
+        room_no,
+      </if>
+      <if test="roomTypeId != null">
+        room_type_id,
+      </if>
+      <if test="roomState != null">
+        room_state,
+      </if>
+      <if test="floorId != null">
+        floor_id,
+      </if>
+      <if test="hotelNo != null">
+        hotel_no,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="roomTag != null">
+        room_tag,
+      </if>
+      <if test="locked != null">
+        is_locked,
+      </if>
+      <if test="lockedReason != null">
+        locked_reason,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roomId != null">
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="roomName != null">
+        #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNo != null">
+        #{roomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roomTypeId != null">
+        #{roomTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="roomState != null">
+        #{roomState,jdbcType=VARCHAR},
+      </if>
+      <if test="floorId != null">
+        #{floorId,jdbcType=BIGINT},
+      </if>
+      <if test="hotelNo != null">
+        #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roomTag != null">
+        #{roomTag,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=BIT},
+      </if>
+      <if test="lockedReason != null">
+        #{lockedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.Room">
+    update room
+    <set>
+      <if test="roomName != null">
+        room_name = #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNo != null">
+        room_no = #{roomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roomTypeId != null">
+        room_type_id = #{roomTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="roomState != null">
+        room_state = #{roomState,jdbcType=VARCHAR},
+      </if>
+      <if test="floorId != null">
+        floor_id = #{floorId,jdbcType=BIGINT},
+      </if>
+      <if test="hotelNo != null">
+        hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roomTag != null">
+        room_tag = #{roomTag,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        is_locked = #{locked,jdbcType=BIT},
+      </if>
+      <if test="lockedReason != null">
+        locked_reason = #{lockedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where room_id = #{roomId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.Room">
+    update room
+    set room_name = #{roomName,jdbcType=VARCHAR},
+      room_no = #{roomNo,jdbcType=VARCHAR},
+      room_type_id = #{roomTypeId,jdbcType=BIGINT},
+      room_state = #{roomState,jdbcType=VARCHAR},
+      floor_id = #{floorId,jdbcType=BIGINT},
+      hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      room_tag = #{roomTag,jdbcType=VARCHAR},
+      is_locked = #{locked,jdbcType=BIT},
+      locked_reason = #{lockedReason,jdbcType=VARCHAR},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where room_id = #{roomId,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insertBatch" parameterType="List">
+    insert into room (room_id, room_name, room_no,
+    room_type_id, room_state, floor_id,
+    hotel_no, order_no, room_tag,
+    is_locked, locked_reason, is_deleted,
+    gmt_create, gmt_modified)
+    value
+      <foreach collection="list" item="v" separator=",">
+        (#{v.roomId,jdbcType=BIGINT}, #{v.roomName,jdbcType=VARCHAR}, #{v.roomNo,jdbcType=VARCHAR},
+        #{v.roomTypeId,jdbcType=BIGINT}, #{v.roomState,jdbcType=VARCHAR}, #{v.floorId,jdbcType=BIGINT},
+        #{v.hotelNo,jdbcType=VARCHAR}, #{v.orderNo,jdbcType=VARCHAR}, #{v.roomTag,jdbcType=VARCHAR},
+        #{v.locked,jdbcType=BIT}, #{v.lockedReason,jdbcType=VARCHAR}, #{v.deleted,jdbcType=BIT},
+        #{v.gmtCreate,jdbcType=TIMESTAMP}, #{v.gmtModified,jdbcType=TIMESTAMP})
+      </foreach>
+  </insert>
+  <!--以上自动生成-->
+
+  <select id="listRoomsByRoomTypeId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from room
+    where room_type_id = #{roomTypeId,jdbcType=BIGINT}
+    order by room_name
+  </select>
+
+  <select id="listRoomsByHotelNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from room
+    where hotel_no = #{hotelNo,jdbcType=VARCHAR}
+    order by room_name
+  </select>
+
+  <update id="updateRoomState" parameterType="com.ywt.laike.hotel.model.Room">
+    update room
+    set
+      room_state = #{roomState,jdbcType=VARCHAR}
+    where room_no = #{roomNo,jdbcType=VARCHAR}
+      and hotel_no = #{hotelNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="listRoomsByRoomNo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from room
+    where room_no in
+    <foreach item="item" index="index" collection="list"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+    order by room_name
+  </select>
+
+  <select id="listRoomsByOrderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from room
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+    order by room_name
+  </select>
+
+  <select id="getRoomByRoomNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from room
+    where room_no = #{roomNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

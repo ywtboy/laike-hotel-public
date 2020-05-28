@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.DicTypeMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.DicType">
+    <id column="dic_type_id" jdbcType="BIGINT" property="dicTypeId" />
+    <result column="dic_type_code" jdbcType="VARCHAR" property="dicTypeCode" />
+    <result column="dic_type_name" jdbcType="VARCHAR" property="dicTypeName" />
+    <result column="dic_type_class" jdbcType="VARCHAR" property="dicTypeClass" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dic_type_id, dic_type_code, dic_type_name, dic_type_class, is_deleted, gmt_create,
+    gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dic_type
+    where dic_type_id = #{dicTypeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dic_type
+    where dic_type_id = #{dicTypeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.DicType">
+    insert into dic_type (dic_type_id, dic_type_code, dic_type_name,
+      dic_type_class, is_deleted, gmt_create, 
+      gmt_modified)
+    values (#{dicTypeId,jdbcType=BIGINT}, #{dicTypeCode,jdbcType=VARCHAR}, #{dicTypeName,jdbcType=VARCHAR}, 
+      #{dicTypeClass,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{gmtCreate,jdbcType=TIMESTAMP},
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.DicType">
+    insert into dic_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dicTypeId != null">
+        dic_type_id,
+      </if>
+      <if test="dicTypeCode != null">
+        dic_type_code,
+      </if>
+      <if test="dicTypeName != null">
+        dic_type_name,
+      </if>
+      <if test="dicTypeClass != null">
+        dic_type_class,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dicTypeId != null">
+        #{dicTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="dicTypeCode != null">
+        #{dicTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeName != null">
+        #{dicTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeClass != null">
+        #{dicTypeClass,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.DicType">
+    update dic_type
+    <set>
+      <if test="dicTypeCode != null">
+        dic_type_code = #{dicTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeName != null">
+        dic_type_name = #{dicTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicTypeClass != null">
+        dic_type_class = #{dicTypeClass,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where dic_type_id = #{dicTypeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.DicType">
+    update dic_type
+    set dic_type_code = #{dicTypeCode,jdbcType=VARCHAR},
+      dic_type_name = #{dicTypeName,jdbcType=VARCHAR},
+      dic_type_class = #{dicTypeClass,jdbcType=VARCHAR},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where dic_type_id = #{dicTypeId,jdbcType=BIGINT}
+  </update>
+
+  <!--以上自动生成-->
+  <select id="listDicTypes" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dic_type
+    <if test="dicTypeClass != null">
+      where
+        dic_type_class = #{dicTypeClass,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="getDicTypeByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dic_type
+    where
+      dic_type_code = #{dicTypeCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.OrderRoomMapper">
+    <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.OrderRoom">
+        <id column="order_room_id" jdbcType="BIGINT" property="orderRoomId"/>
+        <result column="room_name" jdbcType="VARCHAR" property="roomName"/>
+        <result column="room_no" jdbcType="VARCHAR" property="roomNo"/>
+        <result column="room_type_name" jdbcType="VARCHAR" property="roomTypeName"/>
+        <result column="room_price" jdbcType="DECIMAL" property="roomPrice"/>
+        <result column="guest_name" jdbcType="VARCHAR" property="guestName"/>
+        <result column="guest_tel" jdbcType="VARCHAR" property="guestTel"/>
+        <result column="guest_certificate_no" jdbcType="VARCHAR" property="guestCertificateNo"/>
+        <result column="other_guest_certificate_nos" jdbcType="VARCHAR" property="otherGuestCertificateNos"/>
+        <result column="hotel_no" jdbcType="VARCHAR" property="hotelNo"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="order_type_code" jdbcType="VARCHAR" property="orderTypeCode"/>
+        <result column="estimate_in_time" jdbcType="TIMESTAMP" property="estimateInTime"/>
+        <result column="estimate_out_time" jdbcType="TIMESTAMP" property="estimateOutTime"/>
+        <result column="order_room_state_code" jdbcType="VARCHAR" property="orderRoomStateCode"/>
+        <result column="real_in_time" jdbcType="TIMESTAMP" property="realInTime"/>
+        <result column="real_out_time" jdbcType="TIMESTAMP" property="realOutTime"/>
+        <result column="operator_id" jdbcType="BIGINT" property="operatorId"/>
+        <result column="operator_name" jdbcType="VARCHAR" property="operatorName"/>
+        <result column="reserve_id" jdbcType="BIGINT" property="reserveId"/>
+        <result column="is_deleted" jdbcType="BIT" property="deleted"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    order_room_id, room_name, room_no, room_type_name, room_price, guest_name, guest_tel, 
+    guest_certificate_no, other_guest_certificate_nos, hotel_no, order_no, order_type_code, 
+    estimate_in_time, estimate_out_time, order_room_state_code, real_in_time, real_out_time, 
+    operator_id, operator_name, reserve_id, is_deleted, gmt_create, gmt_modified
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_room
+        where order_room_id = #{orderRoomId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order_room
+    where order_room_id = #{orderRoomId,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.ywt.laike.hotel.model.OrderRoom" useGeneratedKeys="true"
+            keyProperty="orderRoomId" keyColumn="order_room_id">
+    insert into order_room (order_room_id, room_name, room_no, 
+      room_type_name, room_price, guest_name, 
+      guest_tel, guest_certificate_no, other_guest_certificate_nos, 
+      hotel_no, order_no, order_type_code, 
+      estimate_in_time, estimate_out_time, order_room_state_code, 
+      real_in_time, real_out_time, operator_id, 
+      operator_name, reserve_id, is_deleted, gmt_create,
+      gmt_modified)
+    values (#{orderRoomId,jdbcType=BIGINT}, #{roomName,jdbcType=VARCHAR}, #{roomNo,jdbcType=VARCHAR}, 
+      #{roomTypeName,jdbcType=VARCHAR}, #{roomPrice,jdbcType=DECIMAL}, #{guestName,jdbcType=VARCHAR}, 
+      #{guestTel,jdbcType=VARCHAR}, #{guestCertificateNo,jdbcType=VARCHAR}, #{otherGuestCertificateNos,jdbcType=VARCHAR}, 
+      #{hotelNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{orderTypeCode,jdbcType=VARCHAR}, 
+      #{estimateInTime,jdbcType=TIMESTAMP}, #{estimateOutTime,jdbcType=TIMESTAMP}, #{orderRoomStateCode,jdbcType=VARCHAR}, 
+      #{realInTime,jdbcType=TIMESTAMP}, #{realOutTime,jdbcType=TIMESTAMP}, #{operatorId,jdbcType=BIGINT}, 
+      #{operatorName,jdbcType=VARCHAR}, #{reserveId,jdbcType=BIGINT},  #{deleted,jdbcType=BIT}, #{gmtCreate,jdbcType=TIMESTAMP},
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.OrderRoom" useGeneratedKeys="true"
+            keyProperty="orderRoomId" keyColumn="order_room_id">
+        insert into order_room
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderRoomId != null">
+                order_room_id,
+            </if>
+            <if test="roomName != null">
+                room_name,
+            </if>
+            <if test="roomNo != null">
+                room_no,
+            </if>
+            <if test="roomTypeName != null">
+                room_type_name,
+            </if>
+            <if test="roomPrice != null">
+                room_price,
+            </if>
+            <if test="guestName != null">
+                guest_name,
+            </if>
+            <if test="guestTel != null">
+                guest_tel,
+            </if>
+            <if test="guestCertificateNo != null">
+                guest_certificate_no,
+            </if>
+            <if test="otherGuestCertificateNos != null">
+                other_guest_certificate_nos,
+            </if>
+            <if test="hotelNo != null">
+                hotel_no,
+            </if>
+            <if test="orderNo != null">
+                order_no,
+            </if>
+            <if test="orderTypeCode != null">
+                order_type_code,
+            </if>
+            <if test="estimateInTime != null">
+                estimate_in_time,
+            </if>
+            <if test="estimateOutTime != null">
+                estimate_out_time,
+            </if>
+            <if test="orderRoomStateCode != null">
+                order_room_state_code,
+            </if>
+            <if test="realInTime != null">
+                real_in_time,
+            </if>
+            <if test="realOutTime != null">
+                real_out_time,
+            </if>
+            <if test="operatorId != null">
+                operator_id,
+            </if>
+            <if test="operatorName != null">
+                operator_name,
+            </if>
+            <if test="reserveId != null">
+                reserve_id,
+            </if>
+            <if test="deleted != null">
+                is_deleted,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderRoomId != null">
+                #{orderRoomId,jdbcType=BIGINT},
+            </if>
+            <if test="roomName != null">
+                #{roomName,jdbcType=VARCHAR},
+            </if>
+            <if test="roomNo != null">
+                #{roomNo,jdbcType=VARCHAR},
+            </if>
+            <if test="roomTypeName != null">
+                #{roomTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="roomPrice != null">
+                #{roomPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="guestName != null">
+                #{guestName,jdbcType=VARCHAR},
+            </if>
+            <if test="guestTel != null">
+                #{guestTel,jdbcType=VARCHAR},
+            </if>
+            <if test="guestCertificateNo != null">
+                #{guestCertificateNo,jdbcType=VARCHAR},
+            </if>
+            <if test="otherGuestCertificateNos != null">
+                #{otherGuestCertificateNos,jdbcType=VARCHAR},
+            </if>
+            <if test="hotelNo != null">
+                #{hotelNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTypeCode != null">
+                #{orderTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="estimateInTime != null">
+                #{estimateInTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="estimateOutTime != null">
+                #{estimateOutTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderRoomStateCode != null">
+                #{orderRoomStateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="realInTime != null">
+                #{realInTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realOutTime != null">
+                #{realOutTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operatorId != null">
+                #{operatorId,jdbcType=BIGINT},
+            </if>
+            <if test="operatorName != null">
+                #{operatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="reserveId != null">
+                #{reserveId,jdbcType=BIT},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=BIT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.OrderRoom">
+        update order_room
+        <set>
+            <if test="roomName != null">
+                room_name = #{roomName,jdbcType=VARCHAR},
+            </if>
+            <if test="roomNo != null">
+                room_no = #{roomNo,jdbcType=VARCHAR},
+            </if>
+            <if test="roomTypeName != null">
+                room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="roomPrice != null">
+                room_price = #{roomPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="guestName != null">
+                guest_name = #{guestName,jdbcType=VARCHAR},
+            </if>
+            <if test="guestTel != null">
+                guest_tel = #{guestTel,jdbcType=VARCHAR},
+            </if>
+            <if test="guestCertificateNo != null">
+                guest_certificate_no = #{guestCertificateNo,jdbcType=VARCHAR},
+            </if>
+            <if test="otherGuestCertificateNos != null">
+                other_guest_certificate_nos = #{otherGuestCertificateNos,jdbcType=VARCHAR},
+            </if>
+            <if test="hotelNo != null">
+                hotel_no = #{hotelNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNo != null">
+                order_no = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTypeCode != null">
+                order_type_code = #{orderTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="estimateInTime != null">
+                estimate_in_time = #{estimateInTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="estimateOutTime != null">
+                estimate_out_time = #{estimateOutTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderRoomStateCode != null">
+                order_room_state_code = #{orderRoomStateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="realInTime != null">
+                real_in_time = #{realInTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realOutTime != null">
+                real_out_time = #{realOutTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operatorId != null">
+                operator_id = #{operatorId,jdbcType=BIGINT},
+            </if>
+            <if test="operatorName != null">
+                operator_name = #{operatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="reserveId != null">
+                reserve_id = #{reserveId,jdbcType=BIT},
+            </if>
+            <if test="deleted != null">
+                is_deleted = #{deleted,jdbcType=BIT},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where order_room_id = #{orderRoomId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.OrderRoom">
+    update order_room
+    set room_name = #{roomName,jdbcType=VARCHAR},
+      room_no = #{roomNo,jdbcType=VARCHAR},
+      room_type_name = #{roomTypeName,jdbcType=VARCHAR},
+      room_price = #{roomPrice,jdbcType=DECIMAL},
+      guest_name = #{guestName,jdbcType=VARCHAR},
+      guest_tel = #{guestTel,jdbcType=VARCHAR},
+      guest_certificate_no = #{guestCertificateNo,jdbcType=VARCHAR},
+      other_guest_certificate_nos = #{otherGuestCertificateNos,jdbcType=VARCHAR},
+      hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      order_type_code = #{orderTypeCode,jdbcType=VARCHAR},
+      estimate_in_time = #{estimateInTime,jdbcType=TIMESTAMP},
+      estimate_out_time = #{estimateOutTime,jdbcType=TIMESTAMP},
+      order_room_state_code = #{orderRoomStateCode,jdbcType=VARCHAR},
+      real_in_time = #{realInTime,jdbcType=TIMESTAMP},
+      real_out_time = #{realOutTime,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      reserve_id = #{reserveId,jdbcType=BIT},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where order_room_id = #{orderRoomId,jdbcType=BIGINT}
+  </update>
+    <!--以上自动生成-->
+    <select id="listOrderRoomsByOrderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_room
+        where order_no = #{orderNo,jdbcType=VARCHAR}
+    </select>
+    <select id="listOrderRoomsByOrderNos" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_room
+        where
+        <choose>
+            <when test="list != null and list.size() > 0">
+                order_no in
+                <foreach item="item" index="index" collection="list"
+                         open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                1 = 2
+            </otherwise>
+        </choose>
+    </select>
+    <select id="listOrderRooms" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_room
+        <where>
+            <include refid="querySql"/>
+        </where>
+        <if test="sortBy != null">
+            order by
+            ${sortBy}
+            <if test="orderBy != null">
+                ${orderBy}
+            </if>
+        </if>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="listOrderRoomsForReport" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_room
+        <where>
+            ( <![CDATA[ real_in_time < #{endTime} ]]>
+            and (
+            <![CDATA[ real_out_time > #{endTime} ]]>
+            or real_out_time is null ) )
+            or (
+            <![CDATA[ real_in_time >= #{startTime} ]]>
+            and <![CDATA[ real_in_time < #{endTime} ]]>
+            and <![CDATA[ real_out_time >= #{startTime} ]]>
+            and <![CDATA[ real_out_time < #{endTime} ]]>
+            )
+
+        </where>
+    </select>
+
+    <sql id="querySql">
+        <if test="roomNo != null">
+            and room_no = #{roomNo,jdbcType=VARCHAR}
+        </if>
+
+        <if test="orderNo != null">
+            and order_no like CONCAT('%',#{orderNo},'%')
+        </if>
+        <if test="guestName != null">
+            and guest_name like CONCAT('%',#{guestName},'%')
+        </if>
+        <if test="guestTel != null">
+            and guest_tel = #{guestTel}
+        </if>
+        <if test="guestCertificateNo != null">
+            and guest_certificate_no = #{guestCertificateNo}
+        </if>
+        <if test="hotelNo != null">
+            and hotel_no = #{hotelNo,jdbcType=VARCHAR}
+            <if test="roomName != null">
+                and room_name like CONCAT('%',#{roomName},'%')
+            </if>
+        </if>
+        <if test="orderRoomStateCode != null">
+            and order_room_state_code = #{orderRoomStateCode,jdbcType=VARCHAR}
+        </if>
+        <if test="orderTypeCode != null">
+            and order_type_code = #{orderTypeCode,jdbcType=VARCHAR}
+        </if>
+
+        <if test="startTime != null">
+            and <![CDATA[ real_in_time >= #{startTime} ]]>
+        </if>
+        <if test="endTime != null">
+            and <![CDATA[ real_in_time < #{endTime} ]]>
+        </if>
+        <if test="reserveId != null">
+            and reserve_id = #{reserveId,jdbcType=BIT}
+        </if>
+
+        <if test="estimateInTimeStart != null">
+            and <![CDATA[ estimate_in_time >= #{estimateInTimeStart} ]]>
+        </if>
+        <if test="estimateInTimeEnd != null">
+            and <![CDATA[ estimate_in_time < #{estimateInTimeEnd} ]]>
+        </if>
+
+        <if test="estimateOutTimeStart != null">
+            and <![CDATA[ estimate_out_time >= #{estimateOutTimeStart} ]]>
+        </if>
+        <if test="estimateOutTimeEnd != null">
+            and <![CDATA[ estimate_out_time < #{estimateOutTimeEnd} ]]>
+        </if>
+        <!--<if test="orderDate != null">-->
+        <!--and DATE_FORMAT(gmt_create,'%Y-%m-%d') = #{orderDate}-->
+        <!--</if>-->
+    </sql>
+</mapper>

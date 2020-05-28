@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.PayDetailMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.PayDetail">
+    <id column="pay_detail_id" jdbcType="BIGINT" property="payDetailId" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="pk_id" jdbcType="BIGINT" property="pkId" />
+    <result column="pay_method_code" jdbcType="VARCHAR" property="payMethodCode" />
+    <result column="pay_money" jdbcType="DECIMAL" property="payMoney" />
+    <result column="offset_money" jdbcType="DECIMAL" property="offsetMoney" />
+    <result column="offset_id" jdbcType="BIGINT" property="offsetId" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pay_detail_id, `table_name`, pk_id, pay_method_code, pay_money, offset_money, offset_id,
+     is_deleted, gmt_create, gmt_modified, pay_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_detail
+    where pay_detail_id = #{payDetailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pay_detail
+    where pay_detail_id = #{payDetailId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.PayDetail">
+    insert into pay_detail (pay_detail_id, `table_name`, pk_id, 
+      pay_method_code, pay_money,  offset_money, offset_id, is_deleted,
+      gmt_create, gmt_modified, pay_type)
+    values (#{payDetailId,jdbcType=BIGINT}, #{tableName,jdbcType=VARCHAR}, #{pkId,jdbcType=BIGINT}, 
+      #{payMethodCode,jdbcType=VARCHAR}, #{payMoney,jdbcType=DECIMAL}, #{offsetMoney,jdbcType=DECIMAL},
+      #{offsetId,jdbcType=BIGINT}, #{deleted,jdbcType=BIT},#{gmtCreate,jdbcType=TIMESTAMP},
+      #{gmtModified,jdbcType=TIMESTAMP}, #{payType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.PayDetail">
+    insert into pay_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payDetailId != null">
+        pay_detail_id,
+      </if>
+      <if test="tableName != null">
+        `table_name`,
+      </if>
+      <if test="pkId != null">
+        pk_id,
+      </if>
+      <if test="payMethodCode != null">
+        pay_method_code,
+      </if>
+      <if test="payMoney != null">
+        pay_money,
+      </if>
+      <if test="offsetMoney != null">
+        offset_money,
+      </if>
+      <if test="offsetId != null">
+        offset_id,
+      </if>
+      <if test="deleted != null">
+        is_deleted,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payDetailId != null">
+        #{payDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkId != null">
+        #{pkId,jdbcType=BIGINT},
+      </if>
+      <if test="payMethodCode != null">
+        #{payMethodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payMoney != null">
+        #{payMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="offsetMoney != null">
+        #{offsetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="offsetId != null">
+        #{offsetId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.PayDetail">
+    update pay_detail
+    <set>
+      <if test="tableName != null">
+        `table_name` = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="pkId != null">
+        pk_id = #{pkId,jdbcType=BIGINT},
+      </if>
+      <if test="payMethodCode != null">
+        pay_method_code = #{payMethodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payMoney != null">
+        pay_money = #{payMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="offsetMoney != null">
+        offset_money = #{offsetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="offsetId != null">
+        offset_id = #{offsetId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pay_detail_id = #{payDetailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.PayDetail">
+    update pay_detail
+    set `table_name` = #{tableName,jdbcType=VARCHAR},
+      pk_id = #{pkId,jdbcType=BIGINT},
+      pay_method_code = #{payMethodCode,jdbcType=VARCHAR},
+      pay_money = #{payMoney,jdbcType=DECIMAL},
+      offset_money = #{offsetMoney,jdbcType=DECIMAL},
+      offset_id = #{offsetId,jdbcType=DECIMAL},
+      is_deleted = #{deleted,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      pay_type = #{payType,jdbcType=VARCHAR}
+    where pay_detail_id = #{payDetailId,jdbcType=BIGINT}
+  </update>
+  <!--以上自动生成 -->
+  <select id="listPayDetails" parameterType="com.ywt.laike.hotel.model.PayDetail" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pay_detail
+    where `table_name` = #{tableName,jdbcType=VARCHAR}
+    and pk_id = #{pkId,jdbcType=BIGINT}
+  </select>
+
+  <select id="listPayDetailsByTableNameAndPkIds"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pay_detail
+    where `table_name` = #{tableName,jdbcType=VARCHAR}
+--     where `table_name` = 'order_income'
+    <choose>
+      <when test="pkIds != null and pkIds.size() > 0">
+        and pk_id in
+        <foreach item="item" index="index" collection="pkIds"
+                 open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </when>
+    </choose>
+  </select>
+</mapper>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<classPathEntry location="D:\study\java\maven\repository\mysql\mysql-connector-java\8.0.13\mysql-connector-java-8.0.13.jar" />-->
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/laike_hotel?samp_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;usessl=false"
+                        userId="root"
+                        password="091029">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.ywt.laike.hotel.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ywt.laike.hotel.dao"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="s"></table>
+        <!--<table schema="DB2ADMIN" tableName="hotel" domainObjectName="Hotel" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<property name="useActualColumnNames" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<generatedKey column="ID" sqlStatement="DB2" identity="true" />&ndash;&gt;-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+            <!--&lt;!&ndash;<ignoreColumn column="FRED" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="floor" domainObjectName="Floor" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<property name="useActualColumnNames" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<generatedKey column="ID" sqlStatement="DB2" identity="true" />&ndash;&gt;-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+            <!--&lt;!&ndash;<ignoreColumn column="FRED" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="room_type" domainObjectName="RoomType" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<property name="useActualColumnNames" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<generatedKey column="ID" sqlStatement="DB2" identity="true" />&ndash;&gt;-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+            <!--&lt;!&ndash;<ignoreColumn column="FRED" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="room" domainObjectName="Room" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<property name="useActualColumnNames" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<generatedKey column="ID" sqlStatement="DB2" identity="true" />&ndash;&gt;-->
+            <!--<columnOverride column="is_locked" property="locked" />-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+            <!--&lt;!&ndash;<ignoreColumn column="FRED" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="order" domainObjectName="Order" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--selectByExampleQueryId="false">-->
+
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="order_consume" domainObjectName="OrderConsume" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+
+        <!--<table schema="DB2ADMIN" tableName="order_income" domainObjectName="OrderIncome" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="order_room" domainObjectName="OrderRoom" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="pay_detail" domainObjectName="PayDetail" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="dic_common" domainObjectName="DicCommon" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="dic_hotel" domainObjectName="DicHotel" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="dic_type" domainObjectName="DicType" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="guest" domainObjectName="Guest" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_vip" property="vip" />-->
+            <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="guest_hotel" domainObjectName="GuestHotel" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--selectByExampleQueryId="false">-->
+        <!--<columnOverride column="is_vip" property="vip" />-->
+        <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="front_cash_flow" domainObjectName="FrontCashFlow" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="order_operation_record" domainObjectName="OrderOperationRecord" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="sys_role" domainObjectName="SysRole" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--selectByExampleQueryId="false">-->
+        <!--<columnOverride column="is_available" property="available" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="sys_resource" domainObjectName="SysResource" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_available" property="available" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<columnOverride column="is_locked" property="locked" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="handover" domainObjectName="Handover" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--selectByExampleQueryId="false">-->
+        <!--<columnOverride column="is_deleted" property="mandatory" />-->
+        <!--</table>-->
+
+        <!--<table schema="DB2ADMIN" tableName="order_reserve" domainObjectName="OrderReserve" enableCountByExample="false" enableUpdateByExample="false"-->
+        <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--selectByExampleQueryId="false">-->
+        <!--<columnOverride column="is_deleted" property="deleted" />-->
+        <!--</table>-->
+
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.HandoverMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.Handover">
+    <id column="handover_id" jdbcType="BIGINT" property="handoverId" />
+    <result column="off_going_user_id" jdbcType="BIGINT" property="offGoingUserId" />
+    <result column="off_going_real_name" jdbcType="VARCHAR" property="offGoingRealName" />
+    <result column="on_coming_user_id" jdbcType="BIGINT" property="onComingUserId" />
+    <result column="on_coming_real_name" jdbcType="VARCHAR" property="onComingRealName" />
+    <result column="handover_time" jdbcType="TIMESTAMP" property="handoverTime" />
+    <result column="cash_money" jdbcType="DECIMAL" property="cashMoney" />
+    <result column="off_going_ok" jdbcType="BIT" property="offGoingOk" />
+    <result column="on_coming_ok" jdbcType="BIT" property="onComingOk" />
+    <result column="handover_comment" jdbcType="VARCHAR" property="handoverComment" />
+    <result column="hotel_no" jdbcType="VARCHAR" property="hotelNo" />
+    <result column="is_mandatory" jdbcType="BIT" property="mandatory" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    handover_id, off_going_user_id, off_going_real_name, on_coming_user_id, on_coming_real_name, 
+    handover_time, cash_money, off_going_ok, on_coming_ok, handover_comment, hotel_no, 
+    is_mandatory, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from handover
+    where handover_id = #{handoverId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from handover
+    where handover_id = #{handoverId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.Handover">
+    insert into handover (handover_id, off_going_user_id, off_going_real_name, 
+      on_coming_user_id, on_coming_real_name, handover_time, 
+      cash_money, off_going_ok, on_coming_ok, 
+      handover_comment, hotel_no, is_mandatory, 
+      gmt_create, gmt_modified)
+    values (#{handoverId,jdbcType=BIGINT}, #{offGoingUserId,jdbcType=BIGINT}, #{offGoingRealName,jdbcType=VARCHAR}, 
+      #{onComingUserId,jdbcType=BIGINT}, #{onComingRealName,jdbcType=VARCHAR}, #{handoverTime,jdbcType=TIMESTAMP}, 
+      #{cashMoney,jdbcType=DECIMAL}, #{offGoingOk,jdbcType=BIT}, #{onComingOk,jdbcType=BIT}, 
+      #{handoverComment,jdbcType=VARCHAR}, #{hotelNo,jdbcType=VARCHAR}, #{mandatory,jdbcType=BIT}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.Handover">
+    insert into handover
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="handoverId != null">
+        handover_id,
+      </if>
+      <if test="offGoingUserId != null">
+        off_going_user_id,
+      </if>
+      <if test="offGoingRealName != null">
+        off_going_real_name,
+      </if>
+      <if test="onComingUserId != null">
+        on_coming_user_id,
+      </if>
+      <if test="onComingRealName != null">
+        on_coming_real_name,
+      </if>
+      <if test="handoverTime != null">
+        handover_time,
+      </if>
+      <if test="cashMoney != null">
+        cash_money,
+      </if>
+      <if test="offGoingOk != null">
+        off_going_ok,
+      </if>
+      <if test="onComingOk != null">
+        on_coming_ok,
+      </if>
+      <if test="handoverComment != null">
+        handover_comment,
+      </if>
+      <if test="hotelNo != null">
+        hotel_no,
+      </if>
+      <if test="mandatory != null">
+        is_mandatory,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="handoverId != null">
+        #{handoverId,jdbcType=BIGINT},
+      </if>
+      <if test="offGoingUserId != null">
+        #{offGoingUserId,jdbcType=BIGINT},
+      </if>
+      <if test="offGoingRealName != null">
+        #{offGoingRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="onComingUserId != null">
+        #{onComingUserId,jdbcType=BIGINT},
+      </if>
+      <if test="onComingRealName != null">
+        #{onComingRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="handoverTime != null">
+        #{handoverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cashMoney != null">
+        #{cashMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="offGoingOk != null">
+        #{offGoingOk,jdbcType=BIT},
+      </if>
+      <if test="onComingOk != null">
+        #{onComingOk,jdbcType=BIT},
+      </if>
+      <if test="handoverComment != null">
+        #{handoverComment,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelNo != null">
+        #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mandatory != null">
+        #{mandatory,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.Handover">
+    update handover
+    <set>
+      <if test="offGoingUserId != null">
+        off_going_user_id = #{offGoingUserId,jdbcType=BIGINT},
+      </if>
+      <if test="offGoingRealName != null">
+        off_going_real_name = #{offGoingRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="onComingUserId != null">
+        on_coming_user_id = #{onComingUserId,jdbcType=BIGINT},
+      </if>
+      <if test="onComingRealName != null">
+        on_coming_real_name = #{onComingRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="handoverTime != null">
+        handover_time = #{handoverTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cashMoney != null">
+        cash_money = #{cashMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="offGoingOk != null">
+        off_going_ok = #{offGoingOk,jdbcType=BIT},
+      </if>
+      <if test="onComingOk != null">
+        on_coming_ok = #{onComingOk,jdbcType=BIT},
+      </if>
+      <if test="handoverComment != null">
+        handover_comment = #{handoverComment,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelNo != null">
+        hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mandatory != null">
+        is_mandatory = #{mandatory,jdbcType=BIT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where handover_id = #{handoverId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.Handover">
+    update handover
+    set off_going_user_id = #{offGoingUserId,jdbcType=BIGINT},
+      off_going_real_name = #{offGoingRealName,jdbcType=VARCHAR},
+      on_coming_user_id = #{onComingUserId,jdbcType=BIGINT},
+      on_coming_real_name = #{onComingRealName,jdbcType=VARCHAR},
+      handover_time = #{handoverTime,jdbcType=TIMESTAMP},
+      cash_money = #{cashMoney,jdbcType=DECIMAL},
+      off_going_ok = #{offGoingOk,jdbcType=BIT},
+      on_coming_ok = #{onComingOk,jdbcType=BIT},
+      handover_comment = #{handoverComment,jdbcType=VARCHAR},
+      hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      is_mandatory = #{mandatory,jdbcType=BIT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where handover_id = #{handoverId,jdbcType=BIGINT}
+  </update>
+
+  <select id="getLastHandoverByHotelNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from handover
+    where handover_time = (
+      select max(handover_time)
+      from handover
+      where hotel_no = #{hotelNo,jdbcType=VARCHAR}
+    )
+  </select>
+
+</mapper>

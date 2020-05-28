@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ywt.laike.hotel.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ywt.laike.hotel.model.User">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="mobile_num" jdbcType="VARCHAR" property="mobileNum" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
+    <result column="id_card_no" jdbcType="VARCHAR" property="idCardNo" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="hotel_no" jdbcType="VARCHAR" property="hotelNo" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="role_ids" jdbcType="VARCHAR" property="roleIds" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="is_locked" jdbcType="BIT" property="locked" />
+    <result column="operator_id" jdbcType="BIGINT" property="operatorId" />
+    <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, real_name, nick_name, mobile_num, birthday, user_sex, id_card_no, 
+    address, user_type, hotel_no, salt, user_pwd, role_ids, last_login_time, is_locked, 
+    operator_id, operator_name, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <!--插入后自动设置id-->
+  <insert id="insert" parameterType="com.ywt.laike.hotel.model.User" useGeneratedKeys="true"
+          keyProperty="userId" keyColumn="user_id">
+    insert into user (user_id, user_name, real_name, 
+      nick_name, mobile_num, birthday, 
+      user_sex, id_card_no, address, 
+      user_type, hotel_no, salt, 
+      user_pwd, role_ids, last_login_time, 
+      is_locked, operator_id, operator_name, 
+      gmt_create, gmt_modified)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{mobileNum,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{userSex,jdbcType=VARCHAR}, #{idCardNo,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{hotelNo,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{roleIds,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{locked,jdbcType=BIT}, #{operatorId,jdbcType=BIGINT}, #{operatorName,jdbcType=VARCHAR},
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ywt.laike.hotel.model.User" useGeneratedKeys="true"
+          keyProperty="userId" keyColumn="user_id">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="mobileNum != null">
+        mobile_num,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="idCardNo != null">
+        id_card_no,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="hotelNo != null">
+        hotel_no,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="roleIds != null">
+        role_ids,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="locked != null">
+        is_locked,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="operatorName != null">
+        operator_name,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNum != null">
+        #{mobileNum,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNo != null">
+        #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelNo != null">
+        #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="roleIds != null">
+        #{roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=BIT},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorName != null">
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ywt.laike.hotel.model.User">
+    update user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNum != null">
+        mobile_num = #{mobileNum,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardNo != null">
+        id_card_no = #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="hotelNo != null">
+        hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="roleIds != null">
+        role_ids = #{roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="locked != null">
+        is_locked = #{locked,jdbcType=BIT},
+      </if>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorName != null">
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ywt.laike.hotel.model.User">
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      mobile_num = #{mobileNum,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      id_card_no = #{idCardNo,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      hotel_no = #{hotelNo,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      role_ids = #{roleIds,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      is_locked = #{locked,jdbcType=BIT},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+
+  <!--以上自动生成-->
+
+  <select id="getUserByMobileNum" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where mobile_num = #{mobileNum,jdbcType=VARCHAR}
+  </select>
+
+  <select id="countUserByMobileNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+      count(*)
+    from user
+    where mobile_num = #{mobileNum,jdbcType=VARCHAR}
+  </select>
+
+  <select id="listUsersByHotelNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where hotel_no = #{hotelNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

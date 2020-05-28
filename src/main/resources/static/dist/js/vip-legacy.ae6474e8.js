@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["vip"],{1765:function(n,e,t){"use strict";t.r(e);var a=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",[n._v("\n    会员 马上推出\n")])},c=[],u=(t("cadf"),t("551c"),t("f751"),t("097d"),{name:"VipPage",data:function(){return{}}}),i=u,r=t("2877"),l=Object(r["a"])(i,a,c,!1,null,null,null);e["default"]=l.exports}}]);
+//# sourceMappingURL=vip-legacy.ae6474e8.js.map
